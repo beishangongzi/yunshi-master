@@ -1,0 +1,35 @@
+# 模型配置
+model:
+  name: 'UNET' # name为必填参数
+  ch_in: 3
+  ch_out: 2
+
+# 优化器
+optim:
+  name: 'sgd'  # name为必填参数
+  lr: 0.02
+  weight_decay: 0.0004
+  momentum: 0.09
+
+# 数据配置
+dataset:
+  root: '/marine-farm-seg'
+  train:
+    meta_data: 'train.txt'
+    batch_size: 4
+    shuffle: False
+  val:
+    meta_data: 'val.txt'
+    batch_size: 2
+    shuffle: True
+
+# 运行配置
+run:
+  arch: 'gpu'
+#  train:
+#    num_epoch: 30
+#  val:
+#    name: 1
+  test:
+    name: 1
+

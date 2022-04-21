@@ -1,0 +1,35 @@
+# 模型配置
+model:
+  name: 'DEEPLABV_U' # name为必填参数
+  ch_in: 3
+  ch_out: 2
+
+# 优化器
+optim:
+  name: 'sgd'  # name为必填参数
+  lr: 0.02
+  weight_decay: 0.0004
+  momentum: 0.09
+
+# 数据配置
+dataset:
+  root: '/marine-farm-seg2'
+  train:
+    meta_data: 'train_r.txt'
+    batch_size: 12
+    shuffle: True
+  val:
+    meta_data: 'val.txt'
+    batch_size: 6
+    shuffle: True
+
+# 运行配置
+run:
+  arch: 'gpu'
+  train:
+      num_epoch: 50
+#  val:
+#    name: 1
+  test:
+    name: 1
+

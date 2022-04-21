@@ -1,0 +1,28 @@
+# 模型配置
+model:
+  name: 'DEEPLABV3' # name为必填参数
+  backbone: 'resnet101'
+  ch_in: 3
+  ch_out: 2
+
+# 优化器
+optim:
+  name: 'sgd'  # name为必填参数
+  lr: 0.02
+  weight_decay: 0.0004
+  momentum: 0.09
+
+# 数据配置
+dataset:
+  root: '/input_path'
+  test:
+    batch_size: 4
+    shuffle: True
+    has_gt: False
+
+# 运行配置
+run:
+  arch: 'gpu'
+  predict:
+    name: 1
+

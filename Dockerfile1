@@ -1,0 +1,25 @@
+FROM nvidia/cuda:10.0-cudnn7-runtime-ubuntu18.04
+
+# 将程序复制容器内，表示在/workspace 路径下
+COPY . /workspace
+# 确定容器启动时程序运行路径
+WORKDIR /workspace
+
+# 配置程序依赖环境
+RUN apt-get update && apt-get install -y build-essential cmake curl wget
+#RUN wget http://172.27.113.181:8080/Miniconda3-latest-Linux-x86_64.sh && chmod +x Miniconda3-latest-Linux-x86_64.sh && ./Miniconda3-latest-Linux-x86_64.sh
+
+#RUN add-apt-repository ppa:jonathonf/python-3.6
+#    && apt-get install -y python3.6
+#    && pip3 install --upgrade pip \
+    # python3.6-dev python3-pip python3.6-venv \
+#RUN pip3 install --upgrade pip
+#RUN pip3 install numpy pandas seaborn -i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
+#RUN pip3 install --user -i https://pypi.tuna.tsinghua.edu.cn/simple skbuild opencv-python
+#RUN wget http://172.27.113.181:8080/torch-1.2.0-cp36-cp36m-manylinux1_x86_64.whl && pip3 install torch-1.2.0-cp36-cp36m-manylinux1_x86_64.whl
+#RUN pip3 install -r /workspace/requirements.txt
+
+
+
+# 确定容器启动命令。以 python 示例，python 表示编译器，run.py 表示执行文件，/input_path 和/output_path 为容器内绝对路径，测评时会自动将测试数据挂载到容器内/input_path 路径，无需修改
+CMD ["/root/miniconda3/envs/gaofen/bin/python", "run.py", "/input_path", "/output_path"]
